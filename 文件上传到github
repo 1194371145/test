@@ -27,7 +27,7 @@ cd d:
 cd phpstudy
  cd www
  $ cd z_project     //在本地文件夹下拖入一个本地项目文件zheng
-git add zheng
+git add zheng //git add .上传所有
 git commit -m “提"上传代码"
  git push -u origin master
 
