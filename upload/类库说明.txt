@@ -1,0 +1,32 @@
+该类库为文件上传类；
+1.在入口文件index.php中插入一句define('EXTEND_PATH', '../extend/');//也可以不插入
+2.在指定的控制器中引入类库// use upload\Upload;//也可以不写
+eg:
+<?php
+namespace app\admin\controller;
+use app\admin\model\Special as SpecialModel;
+// use common\Upload;//自定义类库；可以省略
+use think\Controller;
+/*
+public function add()
+    {
+    	if(request()->isPost()){
+    		$data=input('post.');
+    		$common=new \upload\Upload;
+            $file=request()->file('img');
+            // print_r(request()->controller());die;
+            $folder=request()->controller();//获取当前控制器名
+            $img_path=$common->upload($file,$folder);//文件名,文件夹
+            $data['img']=$img_path;
+            // print_r($data);die;
+            $specialRes=db('special')->insert($data);
+    		if($img_path){
+    			$this->success('添加专题成功！','lst');
+    		}else{
+    			$this->error('添加专题失败！');
+    		}
+    		return;
+    	}
+        return view();
+    }
+?>
