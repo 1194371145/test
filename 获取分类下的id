@@ -1,0 +1,18 @@
+ public function childrenids($cateid,$obj){//分类id，实例化的数据库
+        $data=$obj->field('id,pid')->select();
+        return $this->_childrenids($data,$cateid,TRUE);
+    }
+
+    private function _childrenids($data,$cateid,$clear=FALSE){
+        static $arr=array();
+        if($clear){
+            $arr=array();
+        }
+        foreach ($data as $k => $v) {
+            if($v['pid']==$cateid){
+                $arr[]=$v['id'];
+                $this->_childrenids($data,$v['id']);
+            }
+        }
+        return $arr;
+    }
